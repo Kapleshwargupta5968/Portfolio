@@ -1,0 +1,275 @@
+:root {
+    --primary-glow: #00bfff; /* Deep sky blue for a vibrant glow */
+    --secondary-glow: #7df9ff; /* Electric blue for highlights */
+    --background-dark: #0a0a14; /* A very dark blue, almost black */
+    --text-primary: #e0e0e0;
+    --text-secondary: #a0a0c0;
+    --border-color: rgba(0, 191, 255, 0.2);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--background-dark);
+    color: var(--text-primary);
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+    scroll-padding-top: 80px; /* Offset for fixed navbar */
+}
+
+/* --- Navbar Styling --- */
+#navbar {
+    background-color: transparent;
+    backdrop-filter: blur(0);
+    transition: background-color 0.3s ease, backdrop-filter 0.3s ease, box-shadow 0.3s ease;
+}
+#navbar.scrolled {
+    background-color: rgba(10, 10, 20, 0.8);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 15px rgba(0, 191, 255, 0.1);
+}
+.nav-link {
+    position: relative;
+    color: var(--text-secondary);
+    transition: color 0.3s ease;
+    padding-bottom: 4px;
+}
+.nav-link:hover {
+    color: var(--text-primary);
+}
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--primary-glow);
+    transition: width 0.3s ease;
+}
+.nav-link:hover::after {
+    width: 100%;
+}
+.nav-link-button {
+    border: 1px solid var(--border-color);
+    padding: 8px 16px;
+    border-radius: 6px;
+    color: var(--text-primary);
+    transition: all 0.3s ease;
+}
+.nav-link-button:hover {
+    background-color: rgba(0, 191, 255, 0.1);
+    box-shadow: 0 0 10px rgba(0, 191, 255, 0.5);
+}
+
+
+/* --- Custom Glow Effects --- */
+.text-glow {
+    text-shadow: 0 0 8px var(--primary-glow), 0 0 20px rgba(0, 191, 255, 0.5);
+}
+
+.box-glow {
+    box-shadow: 0 0 15px var(--primary-glow), inset 0 0 10px rgba(0, 191, 255, 0.3);
+    border: 1px solid var(--border-color);
+}
+
+.button-glow {
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px var(--primary-glow), 0 0 20px rgba(0, 191, 255, 0.5);
+}
+
+.button-glow:hover {
+    box-shadow: 0 0 20px var(--secondary-glow), 0 0 40px rgba(125, 249, 255, 0.7);
+    transform: translateY(-3px);
+}
+
+/* --- Hero Section & Plexus Background --- */
+#hero-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+.profile-image-container {
+    position: relative;
+    animation: float 6s ease-in-out infinite;
+}
+
+.profile-image-glow {
+    filter: drop-shadow(0 0 25px var(--primary-glow));
+}
+
+@keyframes float {
+    0% { transform: translateY(-15px); }
+    50% { transform: translateY(-35px); }
+    100% { transform: translateY(-15px); }
+}
+
+/* Typing Effect */
+.typing-cursor {
+    display: inline-block;
+    width: 3px;
+    height: 1.2em;
+    background-color: var(--secondary-glow);
+    animation: blink 0.7s infinite;
+    margin-left: 4px;
+    vertical-align: middle;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+/* Section Header Styling */
+.section-header {
+    font-family: 'Roboto Mono', monospace;
+    color: var(--secondary-glow);
+    text-shadow: 0 0 5px var(--secondary-glow);
+}
+
+/* --- Project Section Styling --- */
+.project-card {
+    background-color: rgba(29, 37, 60, 0.4);
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    border: 1px solid var(--border-color);
+    transition: all 0.3s ease;
+}
+@media (min-width: 768px) {
+    .project-card {
+        padding: 2rem;
+    }
+}
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 20px rgba(0, 191, 255, 0.4);
+    border-color: var(--primary-glow);
+}
+.tech-tag {
+    background-color: rgba(0, 191, 255, 0.1);
+    color: var(--secondary-glow);
+    font-family: 'Roboto Mono', monospace;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.8rem;
+}
+
+
+/* Timeline Styling */
+.timeline {
+    position: relative;
+    padding: 2rem 0;
+    margin-left: 20px;
+}
+.timeline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(to bottom, transparent, var(--primary-glow), transparent);
+    box-shadow: 0 0 5px var(--primary-glow);
+}
+.timeline-item {
+    position: relative;
+    width: 100%;
+    padding: 10px 0 10px 30px;
+}
+
+@media (min-width: 768px) {
+    .timeline {
+        margin-left: 0;
+    }
+    .timeline::before {
+        left: 50%;
+    }
+    .timeline-item {
+        width: 50%;
+        padding: 10px 40px;
+    }
+    .timeline-item:nth-child(odd) {
+        left: 0;
+        padding: 10px 60px 10px 0;
+        text-align: right;
+    }
+    .timeline-item:nth-child(even) {
+        left: 50%;
+        padding: 10px 0 10px 60px;
+        text-align: left;
+    }
+    .timeline-item:nth-child(odd) .timeline-dot {
+        right: -8px;
+        left: auto;
+    }
+    .timeline-item:nth-child(even) .timeline-dot {
+        left: -8px;
+    }
+}
+
+.timeline-dot {
+    position: absolute;
+    top: 20px;
+    left: -8px;
+    width: 16px;
+    height: 16px;
+    background-color: var(--secondary-glow);
+    border-radius: 50%;
+    border: 3px solid var(--background-dark);
+    z-index: 1;
+    box-shadow: 0 0 10px var(--secondary-glow);
+}
+
+
+/* --- General & Scroll Animations --- */
+.scroll-indicator {
+    z-index: 10;
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translate(-50%, 0);
+    }
+    40% {
+        transform: translate(-50%, -15px);
+    }
+    60% {
+        transform: translate(-50%, -10px);
+    }
+}
+
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s cubic-bezier(0.5, 0, 0, 1), transform 0.8s cubic-bezier(0.5, 0, 0, 1);
+}
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* --- Footer Styling --- */
+.social-link {
+    color: var(--text-secondary);
+    transition: all 0.3s ease;
+}
+
+.social-link:hover {
+    color: var(--primary-glow);
+    transform: translateY(-4px);
+    filter: drop-shadow(0 0 8px var(--primary-glow));
+}
+
