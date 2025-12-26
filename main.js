@@ -30,7 +30,7 @@ const mouse = {
     radius: (canvas.height / 100) * (canvas.width / 100)
 };
 
-window.addEventListener('mousemove', function(event) {
+window.addEventListener('mousemove', function (event) {
     mouse.x = event.x;
     mouse.y = event.y;
 });
@@ -63,18 +63,18 @@ class Particle {
             let dx = this.x - mouse.x;
             let dy = this.y - mouse.y;
             let distance = Math.sqrt(dx * dx + dy * dy);
-            
+
             if (distance < mouse.radius) {
                 const angle = Math.atan2(dy, dx);
                 // The force is stronger when the particle is closer to the mouse
                 const force = (mouse.radius - distance) / mouse.radius;
-                
+
                 // Apply force to velocity, creating a push effect
                 this.vx += force * Math.cos(angle) * this.pushFactor;
                 this.vy += force * Math.sin(angle) * this.pushFactor;
             }
         }
-        
+
         // Apply friction to gracefully slow down the particle after being pushed
         this.vx *= this.friction;
         this.vy *= this.friction;
@@ -90,7 +90,7 @@ class Particle {
         if (this.y + this.size > canvas.height || this.y - this.size < 0) {
             this.directionY = -this.directionY;
         }
-        
+
         // Ensure particles don't get stuck outside the canvas after a strong push
         if (this.x > canvas.width) this.x = canvas.width - this.size;
         if (this.x < 0) this.x = this.size;
@@ -105,8 +105,8 @@ function init() {
     particlesArray = [];
     let numberOfParticles = (canvas.height * canvas.width) / 9000;
     // Ensure there's a minimum number of particles on small screens
-    numberOfParticles = Math.max(numberOfParticles, 40); 
-    
+    numberOfParticles = Math.max(numberOfParticles, 40);
+
     for (let i = 0; i < numberOfParticles; i++) {
         let size = (Math.random() * 2) + 1;
         let x = (Math.random() * ((innerWidth - size * 2) - (size * 2)) + size * 2);
@@ -124,7 +124,7 @@ function connect() {
         for (let b = a; b < particlesArray.length; b++) {
             let distance = ((particlesArray[a].x - particlesArray[b].x) * (particlesArray[a].x - particlesArray[b].x)) +
                 ((particlesArray[a].y - particlesArray[b].y) * (particlesArray[a].y - particlesArray[b].y));
-            
+
             let connectDistance = (canvas.width / 7) * (canvas.height / 7);
             if (connectDistance < 10000) connectDistance = 10000; // Minimum connect distance on small screens
 
@@ -152,9 +152,9 @@ function animate() {
 }
 
 let resizeTimer;
-window.addEventListener('resize', function() {
+window.addEventListener('resize', function () {
     clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(function() {
+    resizeTimer = setTimeout(function () {
         canvas.width = innerWidth;
         canvas.height = innerHeight;
         mouse.radius = ((canvas.height / 100) * (canvas.width / 100));
@@ -162,7 +162,7 @@ window.addEventListener('resize', function() {
     }, 250);
 });
 
-window.addEventListener('mouseout', function() {
+window.addEventListener('mouseout', function () {
     mouse.x = undefined;
     mouse.y = undefined;
 });
@@ -173,7 +173,7 @@ animate();
 
 // --- Typing Effect ---
 const typingTextElement = document.getElementById('typing-text');
-const phrases = ["Full Stack Developer", "MERN Enthusiast", "Building Scalable Digital Solutions"];
+const phrases = ["Full Stack Developer", "MERN-STACK Enthusiast", "Building Scalable Digital Solutions"];
 let phraseIndex = 0;
 let charIndex = 0;
 let isDeleting = false;
@@ -219,7 +219,7 @@ revealElements.forEach(el => revealObserver.observe(el));
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
-        
+
         // Close mobile menu if open
         if (!mobileMenu.classList.contains('hidden')) {
             mobileMenu.classList.add('hidden');
